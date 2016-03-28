@@ -13,16 +13,16 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <meta name="description" content="A number can be positive, negative, or zero. Generally, we use a minus sign to distinguish a negative number from a positive number. However, a computer stores and represents all types of information">
+    <meta name="description" content="A number can be positive, negative, or zero. By convention, we use a minus sign to distinguish a negative number from a positive number. However, a computer reads and stores all types of information a">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="MIPS-02 Data Representation">
 <meta property="og:url" content="http://yoursite.com/2016/03/19/MIPS-02 Data Representation/index.html">
 <meta property="og:site_name" content="Hello, Mel">
-<meta property="og:description" content="A number can be positive, negative, or zero. Generally, we use a minus sign to distinguish a negative number from a positive number. However, a computer stores and represents all types of information">
-<meta property="og:updated_time" content="2016-03-25T03:30:45.000Z">
+<meta property="og:description" content="A number can be positive, negative, or zero. By convention, we use a minus sign to distinguish a negative number from a positive number. However, a computer reads and stores all types of information a">
+<meta property="og:updated_time" content="2016-03-28T17:16:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MIPS-02 Data Representation">
-<meta name="twitter:description" content="A number can be positive, negative, or zero. Generally, we use a minus sign to distinguish a negative number from a positive number. However, a computer stores and represents all types of information">
+<meta name="twitter:description" content="A number can be positive, negative, or zero. By convention, we use a minus sign to distinguish a negative number from a positive number. However, a computer reads and stores all types of information a">
     
     
         
@@ -206,76 +206,118 @@
     
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
-            <p>A number can be positive, negative, or zero. Generally, we use a minus sign to distinguish a negative number from a positive number. However, a computer stores and represents all types of information as fixed bits of binary numbers, which are just sequences of 1s and 0s. Therefore, various methods have been designed to encrypt and read negative numbers.<br><a id="more"></a></p>
+            <p>A number can be positive, negative, or zero. By convention, we use a minus sign to distinguish a negative number from a positive number. However, a computer reads and stores all types of information as fixed bits of binary numbers, which are just sequences of 1s and 0s. How could a computer represent a negative number by using binary numbers was a problem in early days. Since then, various methods have been designed to encrypt and read negative numbers.<br><a id="more"></a></p>
 <blockquote>
 <p> Before you move on, it is important to know <a href="http://www.wikihow.com/Convert-from-Decimal-to-Binary" target="_blank" rel="external">how to convert from decimal to binary</a> and <a href="http://www.wikihow.com/Convert-Binary-to-Hexadecimal" target="_blank" rel="external">how to convert from binary to hexadecimal</a></p>
 </blockquote>
-<h3 id="Unsigned-Integer"><a href="#Unsigned-Integer" class="headerlink" title="Unsigned Integer"></a>Unsigned Integer</h3><p>Unsigned integer does not have the representation of negative numbers, that is to say, an unsigned integer is either positive or zero. An n-bit unsigned integer ranges from 0 to $2^n-1$, thus a 4-bit unsigned integer would have values between 0 - 15.</p>
+<h3 id="Unsigned-Integer"><a href="#Unsigned-Integer" class="headerlink" title="Unsigned Integer"></a>Unsigned Integer</h3><p>Unsigned integer encoding does not have the representation of negative numbers, that is to say, an unsigned integer is either positive or zero. An n-bit unsigned integer ranges from 0 to $2^n-1$, thus a 4-bit unsigned integer would have values between 0 - 15.</p>
 <blockquote>
-<p> Examples of addition/subtraction in registers with length of 1 byte. </p>
+<p> Examples of some unsigned integers (<b>2 bytes</b>). </p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">$0_{10}$</th>
+<th style="text-align:right">$10_{10}$</th>
+<th style="text-align:right">$15_{10}$</th>
+<th style="text-align:right">$255_{10}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">$00000000_2$</td>
+<td style="text-align:right">$00001010_2$</td>
+<td style="text-align:right">$00001111_2$</td>
+<td style="text-align:right">$11111111_2$</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p> Examples of addition/subtraction (<b>1 byte</b>). </p>
 </blockquote>
 <table>
 <thead>
 <tr>
 <th style="text-align:right">Addition #1</th>
+<th style="text-align:left"></th>
 <th style="text-align:right">Addition #2</th>
+<th style="text-align:left"></th>
 <th style="text-align:right">Addition #3</th>
+<th style="text-align:left"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:right">0011 (3)</td>
-<td style="text-align:right">1000 (8)</td>
-<td style="text-align:right">1000  (8)</td>
+<td style="text-align:right">$0011_2$</td>
+<td style="text-align:left">($3_{10}$)</td>
+<td style="text-align:right">$1000_2$</td>
+<td style="text-align:left">($8_{10}$)</td>
+<td style="text-align:right">$1000_2$</td>
+<td style="text-align:left">($8_{10}$)</td>
 </tr>
 <tr>
-<td style="text-align:right">+ 0101 (5)</td>
-<td style="text-align:right">+ 0000 (0)</td>
-<td style="text-align:right">+ 1000  (8)</td>
+<td style="text-align:right">+ $0101_2$</td>
+<td style="text-align:left">($5_{10}$)</td>
+<td style="text-align:right">+ $0000_2$</td>
+<td style="text-align:left">($0_{10}$)</td>
+<td style="text-align:right">+ $1010_2$</td>
+<td style="text-align:left">($10_{10}$)</td>
 </tr>
 <tr>
-<td style="text-align:right">= 1000 (8)</td>
-<td style="text-align:right">= 1000 (8)</td>
-<td style="text-align:right">= 10000 (16)</td>
+<td style="text-align:right">= $1000_2$</td>
+<td style="text-align:left">($8_{10}$)</td>
+<td style="text-align:right">= $1000_2$</td>
+<td style="text-align:left">($8_{10}$)</td>
+<td style="text-align:right">= $0010_2$</td>
+<td style="text-align:left">($18_{10}$)</td>
 </tr>
 </tbody>
 </table>
-<p><a href="http://www.wikihow.com/Add-Binary-Numbers" target="_blank" rel="external">click here</a> if you don&#x2019;t know binary addition</p>
-<p>You may have noticed that the result of Addition #3 is a 5-bit binary number, which is number 16. The magnitude of registers in this example is 1 byte (4 bits). <span class="highlight-text primary">Overflow</span> would occur as the result of producing a number, like 10000, that exceeds the limitation of a given register&apos;s capacity to store.  
+<p><i><a href="http://www.wikihow.com/Add-Binary-Numbers" target="_blank" rel="external">click here</a> if you don&#x2019;t know binary addition</i></p>
+<p>You may have noticed that the first bit of the result of Addition #3 is truncated , in which the correct answer should be $10010_2$. The magnitude of registers in this example is 1 byte (4 bits). <span class="highlight-text primary">Overflow</span> would occur as the result of producing a number, like $10010_2$, that exceeds the limitation of a given register&apos;s capacity to store.  
 
 </p><h3>Signed Integer</h3>
-To store a negative number, signed integer uses <span class="highlight-text primary">the most significant bit</span> (the leftmost bit: <span class="highlight-text primary">1</span>0101101) as an indication of &quot;+&quot; sign or &quot;-&quot; sign, in which 0 represents positive and 1 represent negative. We could imagine that a 32-bit unsigned integer would have 32 bits to store data whereas a 32-bit signed integer would only have 31 bits available. However, with the indication of sign, the leading 0/1 is useful not only when doing arithmetic calculation but also when performing MIPS instructions such as SLT (set on less than).    
+To store a negative number, signed integer uses <span class="highlight-text primary">the most significant bit</span> (the leftmost bit: <span class="highlight-text primary">1</span>0000000) as an indication of &quot;+&quot; sign or &quot;-&quot; sign, in which 0 represents positive and 1 represent negative. We could imagine that a 32-bit unsigned integer would have 32 bits to store data whereas a 32-bit signed integer would only have 31 bits available because the first bit is denoted as a sign bit. However, with the indication of sign, the leading 0/1 is useful not only when doing arithmetic calculation but also when performing MIPS instructions such as SLT (set on less than).    
 <br><br>
 <ul style="list-style-type:disc">
  <li><b>Signed Magnitude</b></li>
 
-Signed magnitude is probably the easiest way to represent a negative number. With the indication of plus-minus by the sign bit, we can simply treat the remaining bits as if they represented an unsigned integer. For example: a 4 bits positive 3 is <span class="highlight-text orange">0</span>011 and negative 3 is <span class="highlight-text orange">1</span>011. Also, we should notice that there are indeed 2 representations of 0, where the positive 0 is <span class="highlight-text orange">0</span>000 and the negative 0 is <span class="highlight-text orange">1</span>000.  
+Signed magnitude is probably the easiest way to represent a negative number in binary system. With the indication of plus-minus by the sign bit, we can simply treat the remaining bits as if they represented an unsigned integer. For example: a 4 bits register would store positive 3 as <span class="highlight-text orange">0</span>011 and negative 3 as <span class="highlight-text orange">1</span>011. Also, we should notice that there are indeed 2 representations of 0, where the positive 0 is <span class="highlight-text orange">0</span>000 and the negative 0 is <span class="highlight-text orange">1</span>000.  
 <br><br>
-<b>Note:</b> since the most significant bit is used to denote the plus-minus, a 4-bit register only has the remaining 3 bits to represent the actual data, which means that the largest and the lowest number a 4-bit register can address is <span class="highlight-text orange">0</span>111 and <span class="highlight-text orange">1</span>111, respectively. <p></p>
-<blockquote><i>Examples of negative number (2 bytes)</i></blockquote>
+<b>Note:</b> since the most significant bit is used to denote the plus-minus, a 4-bit register only has the remaining 3 bits to represent the actual data, which means that the largest and the lowest number a 4-bit register can address is <span class="highlight-text orange">0</span>111 (${7_1}_0$) and <span class="highlight-text orange">1</span>111 (${-7_1}_0$), respectively. <p></p>
+<blockquote><i>Examples of positive &amp; negative numbers (<b>2 bytes</b>)</i></blockquote>
 
 <table>
 <thead>
 <tr>
-<th style="text-align:right">0 and -0</th>
-<th style="text-align:right">15 and -15</th>
-<th style="text-align:right">3 and -3</th>
+<th style="text-align:right"></th>
+<th style="text-align:left"></th>
+<th style="text-align:right"></th>
+<th style="text-align:left"></th>
+<th style="text-align:right"></th>
+<th style="text-align:left"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:right">00000000 (+0)</td>
-<td style="text-align:right">00001111 (15)</td>
-<td style="text-align:right">00000011 (3)</td>
+<td style="text-align:right">$00000000_2$</td>
+<td style="text-align:left">($+0_{10}$)</td>
+<td style="text-align:right">$00001111_2$</td>
+<td style="text-align:left">($15_{10}$)</td>
+<td style="text-align:right">$00000011_2$</td>
+<td style="text-align:left">($3_{10}$)</td>
 </tr>
 <tr>
-<td style="text-align:right">10000000 (-0)</td>
-<td style="text-align:right">10001111 (-15)</td>
-<td style="text-align:right">10000011 (-3)</td>
+<td style="text-align:right">$10000000_2$</td>
+<td style="text-align:left">($-0_{10}$)</td>
+<td style="text-align:right">$10001111_2$</td>
+<td style="text-align:left">($-15_{10}$)</td>
+<td style="text-align:right">$10000011_2$</td>
+<td style="text-align:left">($-3_{10}$)</td>
 </tr>
 </tbody>
 </table>
-<p><br><br><i>to be continued</i></p>
+<p><i>To be continued&#x2026;</i></p>
 <p></p></ul><p></p>
 
             
@@ -303,7 +345,7 @@ Signed magnitude is probably the easiest way to represent a negative number. Wit
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/03/12/MIPS-01 Overview/" data-tooltip="MIPS 01-Overview">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/03/12/MIPS-01 Overview/" data-tooltip="MIPS-01 Overview">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right"></i>
@@ -384,7 +426,7 @@ Signed magnitude is probably the easiest way to represent a negative number. Wit
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/03/12/MIPS-01 Overview/" data-tooltip="MIPS 01-Overview">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/03/12/MIPS-01 Overview/" data-tooltip="MIPS-01 Overview">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right"></i>
@@ -476,7 +518,7 @@ Signed magnitude is probably the easiest way to represent a negative number. Wit
             <h5 id="about-card-job">
                 <i class="fa fa-briefcase"></i>
                 <br/>
-                <p>iOS Developer</p>
+                <p>Java Programmer</p>
 
             </h5>
         
