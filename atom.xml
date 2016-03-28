@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-03-28T17:16:06.000Z</updated>
+  <updated>2016-03-25T03:32:25.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,139 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>MIPS-02 Data Representation</title>
-    <link href="http://yoursite.com/2016/03/19/MIPS-02%20Data%20Representation/"/>
-    <id>http://yoursite.com/2016/03/19/MIPS-02 Data Representation/</id>
-    <published>2016-03-20T02:18:39.000Z</published>
-    <updated>2016-03-28T17:16:06.000Z</updated>
-    
-    <content type="html">&lt;p&gt;A number can be positive, negative, or zero. By convention, we use a minus sign to distinguish a negative number from a positive number. However, a computer reads and stores all types of information as fixed bits of binary numbers, which are just sequences of 1s and 0s. How could a computer represent a negative number by using binary numbers was a problem in early days. Since then, various methods have been designed to encrypt and read negative numbers.&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt; Before you move on, it is important to know &lt;a href=&quot;http://www.wikihow.com/Convert-from-Decimal-to-Binary&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;how to convert from decimal to binary&lt;/a&gt; and &lt;a href=&quot;http://www.wikihow.com/Convert-Binary-to-Hexadecimal&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;how to convert from binary to hexadecimal&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;Unsigned-Integer&quot;&gt;&lt;a href=&quot;#Unsigned-Integer&quot; class=&quot;headerlink&quot; title=&quot;Unsigned Integer&quot;&gt;&lt;/a&gt;Unsigned Integer&lt;/h3&gt;&lt;p&gt;Unsigned integer encoding does not have the representation of negative numbers, that is to say, an unsigned integer is either positive or zero. An n-bit unsigned integer ranges from 0 to $2^n-1$, thus a 4-bit unsigned integer would have values between 0 - 15.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt; Examples of some unsigned integers (&lt;b&gt;2 bytes&lt;/b&gt;). &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:right&quot;&gt;$0_{10}$&lt;/th&gt;
-&lt;th style=&quot;text-align:right&quot;&gt;$10_{10}$&lt;/th&gt;
-&lt;th style=&quot;text-align:right&quot;&gt;$15_{10}$&lt;/th&gt;
-&lt;th style=&quot;text-align:right&quot;&gt;$255_{10}$&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:right&quot;&gt;$00000000_2$&lt;/td&gt;
-&lt;td style=&quot;text-align:right&quot;&gt;$00001010_2$&lt;/td&gt;
-&lt;td style=&quot;text-align:right&quot;&gt;$00001111_2$&lt;/td&gt;
-&lt;td style=&quot;text-align:right&quot;&gt;$11111111_2$&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;blockquote&gt;
-&lt;p&gt; Examples of addition/subtraction (&lt;b&gt;1 byte&lt;/b&gt;). &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:right&quot;&gt;Addition #1&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;&lt;/th&gt;
-&lt;th style=&quot;text-align:right&quot;&gt;Addition #2&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;&lt;/th&gt;
-&lt;th style=&quot;text-align:right&quot;&gt;Addition #3&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:right&quot;&gt;$0011_2$&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;($3_{10}$)&lt;/td&gt;
-&lt;td style=&quot;text-align:right&quot;&gt;$1000_2$&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;($8_{10}$)&lt;/td&gt;
-&lt;td style=&quot;text-align:right&quot;&gt;$1000_2$&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;($8_{10}$)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:right&quot;&gt;+ $0101_2$&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;($5_{10}$)&lt;/td&gt;
-&lt;td style=&quot;text-align:right&quot;&gt;+ $0000_2$&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;($0_{10}$)&lt;/td&gt;
-&lt;td style=&quot;text-align:right&quot;&gt;+ $1010_2$&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;($10_{10}$)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:right&quot;&gt;= $1000_2$&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;($8_{10}$)&lt;/td&gt;
-&lt;td style=&quot;text-align:right&quot;&gt;= $1000_2$&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;($8_{10}$)&lt;/td&gt;
-&lt;td style=&quot;text-align:right&quot;&gt;= $0010_2$&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;($18_{10}$)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;&lt;i&gt;&lt;a href=&quot;http://www.wikihow.com/Add-Binary-Numbers&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;click here&lt;/a&gt; if you don&amp;#x2019;t know binary addition&lt;/i&gt;&lt;/p&gt;
-&lt;p&gt;You may have noticed that the first bit of the result of Addition #3 is truncated , in which the correct answer should be $10010_2$. The magnitude of registers in this example is 1 byte (4 bits). &lt;span class=&quot;highlight-text primary&quot;&gt;Overflow&lt;/span&gt; would occur as the result of producing a number, like $10010_2$, that exceeds the limitation of a given register&amp;apos;s capacity to store.  
-
-&lt;/p&gt;&lt;h3&gt;Signed Integer&lt;/h3&gt;
-To store a negative number, signed integer uses &lt;span class=&quot;highlight-text primary&quot;&gt;the most significant bit&lt;/span&gt; (the leftmost bit: &lt;span class=&quot;highlight-text primary&quot;&gt;1&lt;/span&gt;0000000) as an indication of &amp;quot;+&amp;quot; sign or &amp;quot;-&amp;quot; sign, in which 0 represents positive and 1 represent negative. We could imagine that a 32-bit unsigned integer would have 32 bits to store data whereas a 32-bit signed integer would only have 31 bits available because the first bit is denoted as a sign bit. However, with the indication of sign, the leading 0/1 is useful not only when doing arithmetic calculation but also when performing MIPS instructions such as SLT (set on less than).    
-&lt;br&gt;&lt;br&gt;
-&lt;ul style=&quot;list-style-type:disc&quot;&gt;
- &lt;li&gt;&lt;b&gt;Signed Magnitude&lt;/b&gt;&lt;/li&gt;
-
-Signed magnitude is probably the easiest way to represent a negative number in binary system. With the indication of plus-minus by the sign bit, we can simply treat the remaining bits as if they represented an unsigned integer. For example: a 4 bits register would store positive 3 as &lt;span class=&quot;highlight-text orange&quot;&gt;0&lt;/span&gt;011 and negative 3 as &lt;span class=&quot;highlight-text orange&quot;&gt;1&lt;/span&gt;011. Also, we should notice that there are indeed 2 representations of 0, where the positive 0 is &lt;span class=&quot;highlight-text orange&quot;&gt;0&lt;/span&gt;000 and the negative 0 is &lt;span class=&quot;highlight-text orange&quot;&gt;1&lt;/span&gt;000.  
-&lt;br&gt;&lt;br&gt;
-&lt;b&gt;Note:&lt;/b&gt; since the most significant bit is used to denote the plus-minus, a 4-bit register only has the remaining 3 bits to represent the actual data, which means that the largest and the lowest number a 4-bit register can address is &lt;span class=&quot;highlight-text orange&quot;&gt;0&lt;/span&gt;111 (${7_1}_0$) and &lt;span class=&quot;highlight-text orange&quot;&gt;1&lt;/span&gt;111 (${-7_1}_0$), respectively. &lt;p&gt;&lt;/p&gt;
-&lt;blockquote&gt;&lt;i&gt;Examples of positive &amp;amp; negative numbers (&lt;b&gt;2 bytes&lt;/b&gt;)&lt;/i&gt;&lt;/blockquote&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:right&quot;&gt;&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;&lt;/th&gt;
-&lt;th style=&quot;text-align:right&quot;&gt;&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;&lt;/th&gt;
-&lt;th style=&quot;text-align:right&quot;&gt;&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:right&quot;&gt;$00000000_2$&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;($+0_{10}$)&lt;/td&gt;
-&lt;td style=&quot;text-align:right&quot;&gt;$00001111_2$&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;($15_{10}$)&lt;/td&gt;
-&lt;td style=&quot;text-align:right&quot;&gt;$00000011_2$&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;($3_{10}$)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:right&quot;&gt;$10000000_2$&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;($-0_{10}$)&lt;/td&gt;
-&lt;td style=&quot;text-align:right&quot;&gt;$10001111_2$&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;($-15_{10}$)&lt;/td&gt;
-&lt;td style=&quot;text-align:right&quot;&gt;$10000011_2$&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;($-3_{10}$)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;&lt;i&gt;To be continued&amp;#x2026;&lt;/i&gt;&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;A number can be positive, negative, or zero. By convention, we use a minus sign to distinguish a negative number from a positive number. However, a computer reads and stores all types of information as fixed bits of binary numbers, which are just sequences of 1s and 0s. How could a computer represent a negative number by using binary numbers was a problem in early days. Since then, various methods have been designed to encrypt and read negative numbers.&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="MIPS" scheme="http://yoursite.com/tags/MIPS/"/>
-    
-  </entry>
   
   <entry>
     <title>MIPS-01 Overview</title>
