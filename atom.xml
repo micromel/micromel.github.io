@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-03-28T17:44:02.000Z</updated>
+  <updated>2016-03-28T17:47:29.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>MIPS 02 Data Representation</title>
-    <link href="http://yoursite.com/2016/03/28/MIPS-02-Data-Representation/"/>
-    <id>http://yoursite.com/2016/03/28/MIPS-02-Data-Representation/</id>
+    <title>MIPS-02 Data Representation</title>
+    <link href="http://yoursite.com/2016/03/28/MIPS-02%20Data%20Representation/"/>
+    <id>http://yoursite.com/2016/03/28/MIPS-02 Data Representation/</id>
     <published>2016-03-28T17:42:30.000Z</published>
-    <updated>2016-03-28T17:44:02.000Z</updated>
+    <updated>2016-03-28T17:47:29.000Z</updated>
     
     <content type="html">&lt;p&gt;A number can be positive, negative, or zero. By convention, we use a minus sign to distinguish a negative number from a positive number. However, a computer reads and stores all types of information as fixed bits of binary numbers, which are just sequences of 1s and 0s. How could a computer represent a negative number by using binary numbers was a problem in early days. Since then, various methods have been designed to encrypt and read negative numbers.&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;

@@ -6,23 +6,23 @@
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hello, Mel">
-    <title>MIPS-01 Overview - Hello, Mel</title>
+    <title>MIPS-02 Data Representation - Hello, Mel</title>
     <meta name="author" content="Mel">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <meta name="description" content="What is Assembly Language?Assembly language is a low-level language that lacks conveniences of methods, variables, arrays, and other abstract concepts. It is used to write programs that deal with CPU">
+    <meta name="description" content="A number can be positive, negative, or zero. By convention, we use a minus sign to distinguish a negative number from a positive number. However, a computer reads and stores all types of information a">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="MIPS-01 Overview">
-<meta property="og:url" content="http://yoursite.com/2016/03/12/MIPS-01 Overview/index.html">
+<meta property="og:title" content="MIPS-02 Data Representation">
+<meta property="og:url" content="http://yoursite.com/2016/03/28/MIPS-02 Data Representation/index.html">
 <meta property="og:site_name" content="Hello, Mel">
-<meta property="og:description" content="What is Assembly Language?Assembly language is a low-level language that lacks conveniences of methods, variables, arrays, and other abstract concepts. It is used to write programs that deal with CPU">
-<meta property="og:updated_time" content="2016-03-25T03:32:25.000Z">
+<meta property="og:description" content="A number can be positive, negative, or zero. By convention, we use a minus sign to distinguish a negative number from a positive number. However, a computer reads and stores all types of information a">
+<meta property="og:updated_time" content="2016-03-28T17:47:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MIPS-01 Overview">
-<meta name="twitter:description" content="What is Assembly Language?Assembly language is a low-level language that lacks conveniences of methods, variables, arrays, and other abstract concepts. It is used to write programs that deal with CPU">
+<meta name="twitter:title" content="MIPS-02 Data Representation">
+<meta name="twitter:description" content="A number can be positive, negative, or zero. By convention, we use a minus sign to distinguish a negative number from a positive number. However, a computer reads and stores all types of information a">
     
     
         
@@ -191,13 +191,13 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title" itemprop="headline">
-            MIPS-01 Overview
+            MIPS-02 Data Representation
         </h1>
     
     <div class="post-meta">
-    <time itemprop="datePublished" content="Sat Mar 12 2016 10:21:31 GMT-0500">
+    <time itemprop="datePublished" content="Mon Mar 28 2016 13:42:30 GMT-0400">
 	
-		    Mar 12, 2016
+		    Mar 28, 2016
     	
     </time>
     
@@ -206,37 +206,119 @@
     
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
-            <h4 id="What-is-Assembly-Language"><a href="#What-is-Assembly-Language" class="headerlink" title="What is Assembly Language?"></a>What is Assembly Language?</h4><p>Assembly language is a low-level language that lacks conveniences of methods, variables, arrays, and other abstract concepts. It is used to write programs that deal with CPU directly, which means that the instructions implemented are totally dependent on the type of processor. Nevertheless, assembly language is worth learning for every programmer who is interested in computer architecture.<br><a id="more"></a></p>
-<h4 id="What-is-MIPS"><a href="#What-is-MIPS" class="headerlink" title="What is MIPS?"></a>What is MIPS?</h4><p>MIPS is an assembly language with extended instructions to make it more programmer-friendly. </p>
-<h4 id="Data-Representation-in-MIPS"><a href="#Data-Representation-in-MIPS" class="headerlink" title="Data Representation in MIPS"></a>Data Representation in MIPS</h4><p>In order to write MIPS programs, first we must understand how data is stored and computation is performed in the most basic level. </p>
-<p>The lowest unit of data is a <i>bit</i>. A bit is a binary value representing either <i>1</i> or <i>0</i>. Depending on the context, a binary value can be interpreted as &#x201C;positive&#x201D; and &#x201C;negative&#x201D;, &#x201C;true&#x201D; and &#x201C;false&#x201D;, or &#x201C;on&#x201D; and &#x201C;off&#x201D;; basically, it represents 2 possible states of the result of a computation. </p>
-<p>A <i>byte</i> consists of 8 bits. In MIPS, 1 byte represents 1 <a href="http://www.asciitable.com/" target="_blank" rel="external">ASCII</a> character. Since a string is basically an array of characters, the string <span class="highlight-text primary">Hello, World!</span> containing 13 ASCII characters (including &#x201C;,&#x201D;, &#x201C;[space]&#x201D;, and &#x201C;!&#x201D;) will take up 13 bytes in memory. </p>
-<p>A <i>word</i> refers to the largest addressable unit of a register. Therefore, the length of a word depends on the number of bits that the processor is able to handle in one operation. A word would be 32 bits long on a 32-bit processor, whereas a word would be 64 bits long on a 64-bit processor. In MIPS, the data type that occupies a whole word is number. </p>
+            <p>A number can be positive, negative, or zero. By convention, we use a minus sign to distinguish a negative number from a positive number. However, a computer reads and stores all types of information as fixed bits of binary numbers, which are just sequences of 1s and 0s. How could a computer represent a negative number by using binary numbers was a problem in early days. Since then, various methods have been designed to encrypt and read negative numbers.<br><a id="more"></a></p>
 <blockquote>
-<p> This table is based on a 32-bit processor</p>
+<p> Before you move on, it is important to know <a href="http://www.wikihow.com/Convert-from-Decimal-to-Binary" target="_blank" rel="external">how to convert from decimal to binary</a> and <a href="http://www.wikihow.com/Convert-Binary-to-Hexadecimal" target="_blank" rel="external">how to convert from binary to hexadecimal</a></p>
+</blockquote>
+<h3 id="Unsigned-Integer"><a href="#Unsigned-Integer" class="headerlink" title="Unsigned Integer"></a>Unsigned Integer</h3><p>Unsigned integer encoding does not have the representation of negative numbers, that is to say, an unsigned integer is either positive or zero. An n-bit unsigned integer ranges from 0 to $2^n-1$, thus a 4-bit unsigned integer would have values between 0 - 15.</p>
+<blockquote>
+<p> Examples of some unsigned integers (<b>2 bytes</b>). </p>
 </blockquote>
 <table>
 <thead>
 <tr>
-<th>Unit</th>
-<th>Number of Bit(s)</th>
+<th style="text-align:right">$0_{10}$</th>
+<th style="text-align:right">$10_{10}$</th>
+<th style="text-align:right">$15_{10}$</th>
+<th style="text-align:right">$255_{10}$</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>bit</td>
-<td>1</td>
-</tr>
-<tr>
-<td>byte</td>
-<td>8</td>
-</tr>
-<tr>
-<td>word</td>
-<td>32</td>
+<td style="text-align:right">$00000000_2$</td>
+<td style="text-align:right">$00001010_2$</td>
+<td style="text-align:right">$00001111_2$</td>
+<td style="text-align:right">$11111111_2$</td>
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p> Examples of addition/subtraction (<b>1 byte</b>). </p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Addition #1</th>
+<th style="text-align:left"></th>
+<th style="text-align:right">Addition #2</th>
+<th style="text-align:left"></th>
+<th style="text-align:right">Addition #3</th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">$0011_2$</td>
+<td style="text-align:left">($3_{10}$)</td>
+<td style="text-align:right">$1000_2$</td>
+<td style="text-align:left">($8_{10}$)</td>
+<td style="text-align:right">$1000_2$</td>
+<td style="text-align:left">($8_{10}$)</td>
+</tr>
+<tr>
+<td style="text-align:right">+ $0101_2$</td>
+<td style="text-align:left">($5_{10}$)</td>
+<td style="text-align:right">+ $0000_2$</td>
+<td style="text-align:left">($0_{10}$)</td>
+<td style="text-align:right">+ $1010_2$</td>
+<td style="text-align:left">($10_{10}$)</td>
+</tr>
+<tr>
+<td style="text-align:right">= $1000_2$</td>
+<td style="text-align:left">($8_{10}$)</td>
+<td style="text-align:right">= $1000_2$</td>
+<td style="text-align:left">($8_{10}$)</td>
+<td style="text-align:right">= $0010_2$</td>
+<td style="text-align:left">($18_{10}$)</td>
+</tr>
+</tbody>
+</table>
+<p><i><a href="http://www.wikihow.com/Add-Binary-Numbers" target="_blank" rel="external">click here</a> if you don&#x2019;t know binary addition</i></p>
+<p>You may have noticed that the first bit of the result of Addition #3 is truncated , in which the correct answer should be $10010_2$. The magnitude of registers in this example is 1 byte (4 bits). <span class="highlight-text primary">Overflow</span> would occur as the result of producing a number, like $10010_2$, that exceeds the limitation of a given register&apos;s capacity to store.  
+
+</p><h3>Signed Integer</h3>
+To store a negative number, signed integer uses <span class="highlight-text primary">the most significant bit</span> (the leftmost bit: <span class="highlight-text primary">1</span>0000000) as an indication of &quot;+&quot; sign or &quot;-&quot; sign, in which 0 represents positive and 1 represent negative. We could imagine that a 32-bit unsigned integer would have 32 bits to store data whereas a 32-bit signed integer would only have 31 bits available because the first bit is denoted as a sign bit. However, with the indication of sign, the leading 0/1 is useful not only when doing arithmetic calculation but also when performing MIPS instructions such as SLT (set on less than).    
+<br><br>
+<ul style="list-style-type:disc">
+<li><b>Signed Magnitude</b></li>
+
+Signed magnitude is probably the easiest way to represent a negative number in binary system. With the indication of plus-minus by the sign bit, we can simply treat the remaining bits as if they represented an unsigned integer. For example: a 4 bits register would store positive 3 as <span class="highlight-text orange">0</span>011 and negative 3 as <span class="highlight-text orange">1</span>011. Also, we should notice that there are indeed 2 representations of 0, where the positive 0 is <span class="highlight-text orange">0</span>000 and the negative 0 is <span class="highlight-text orange">1</span>000.  
+<br><br>
+<b>Note:</b> since the most significant bit is used to denote the plus-minus, a 4-bit register only has the remaining 3 bits to represent the actual data, which means that the largest and the lowest number a 4-bit register can address is <span class="highlight-text orange">0</span>111 (${7_1}_0$) and <span class="highlight-text orange">1</span>111 (${-7_1}_0$), respectively. <p></p>
+<blockquote><i>Examples of positive &amp; negative numbers (<b>2 bytes</b>)</i></blockquote>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:left"></th>
+<th style="text-align:right"></th>
+<th style="text-align:left"></th>
+<th style="text-align:right"></th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">$00000000_2$</td>
+<td style="text-align:left">($+0_{10}$)</td>
+<td style="text-align:right">$00001111_2$</td>
+<td style="text-align:left">($15_{10}$)</td>
+<td style="text-align:right">$00000011_2$</td>
+<td style="text-align:left">($3_{10}$)</td>
+</tr>
+<tr>
+<td style="text-align:right">$10000000_2$</td>
+<td style="text-align:left">($-0_{10}$)</td>
+<td style="text-align:right">$10001111_2$</td>
+<td style="text-align:left">($-15_{10}$)</td>
+<td style="text-align:right">$10000011_2$</td>
+<td style="text-align:left">($-3_{10}$)</td>
+</tr>
+</tbody>
+</table>
+<p><i>To be continued</i></p>
+<p></p></ul><p></p>
 
             
         </div>
@@ -255,7 +337,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/03/28/MIPS-02 Data Representation/"  data-tooltip="MIPS-02 Data Representation">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -263,7 +345,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/03/11/hello-world/" data-tooltip="Hello World">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/03/12/MIPS-01 Overview/" data-tooltip="MIPS-01 Overview">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right"></i>
@@ -278,17 +360,17 @@
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2016/03/12/MIPS-01 Overview/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2016/03/28/MIPS-02 Data Representation/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2016/03/12/MIPS-01 Overview/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2016/03/28/MIPS-02 Data Representation/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2016/03/12/MIPS-01 Overview/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2016/03/28/MIPS-02 Data Representation/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -336,7 +418,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/03/28/MIPS-02 Data Representation/"  data-tooltip="MIPS-02 Data Representation">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -344,7 +426,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/03/11/hello-world/" data-tooltip="Hello World">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/03/12/MIPS-01 Overview/" data-tooltip="MIPS-01 Overview">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right"></i>
@@ -359,17 +441,17 @@
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2016/03/12/MIPS-01 Overview/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2016/03/28/MIPS-02 Data Representation/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2016/03/12/MIPS-01 Overview/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2016/03/28/MIPS-02 Data Representation/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2016/03/12/MIPS-01 Overview/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2016/03/28/MIPS-02 Data Representation/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -395,17 +477,17 @@
                 <div id="share-options-bar" class="share-options-bar" data-behavior="3">
     <ul class="share-options">
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2016/03/12/MIPS-01 Overview/">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2016/03/28/MIPS-02 Data Representation/">
                 <i class="fa fa-google-plus"></i><span class="">Share on Google Plus</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2016/03/12/MIPS-01 Overview/">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2016/03/28/MIPS-02 Data Representation/">
                 <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2016/03/12/MIPS-01 Overview/">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2016/03/28/MIPS-02 Data Representation/">
                 <i class="fa fa-twitter"></i><span>Share on Twitter</span>
             </a>
         </li>
@@ -492,9 +574,9 @@
     
         <script>
              var disqus_config = function () {
-                 this.page.url = 'http://yoursite.com/2016/03/12/MIPS-01 Overview/';
+                 this.page.url = 'http://yoursite.com/2016/03/28/MIPS-02 Data Representation/';
                  
-                    this.page.identifier = '2016/03/12/MIPS-01 Overview/';
+                    this.page.identifier = '2016/03/28/MIPS-02 Data Representation/';
                                   
              };
             (function() {
